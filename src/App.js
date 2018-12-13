@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import testData from './db/test_data';
+// import chartData from './db/test_data';
 import chartData from './actions/chart_data';
 
 import * as d3 from 'd3';
@@ -11,6 +11,7 @@ window.d3_tl = d3_tl;
 var chart = d3_tl
 	.timelines()
 	// .width(850 * 4)
+	.margin({ left: 120, right: 30, top: 0, bottom: 0 })
 	.stack()
 	.showTimeAxisTick()
 	.tickFormat({
@@ -21,7 +22,7 @@ var chart = d3_tl
 	})
 	.rotateTicks(45)
 	.display('circle')
-	.hover((d, i, datum) => {
+	.click((d, i, datum) => {
 		console.log('d: ', d);
 		console.log('i: ', i);
 		console.log('datum: ', datum);
@@ -31,8 +32,8 @@ class App extends Component {
 	render() {
 		d3.select('#root')
 			.append('svg')
-			.attr('width', 850)
-			.attr('height', 700)
+			.attr('width', 1500)
+			.attr('height', 200)
 			.datum(chartData)
 			.call(chart);
 
