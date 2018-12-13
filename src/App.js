@@ -10,8 +10,11 @@ window.d3_tl = d3_tl;
 
 var chart = d3_tl
 	.timelines()
+	// .width(850 * 4)
+	.stack()
+	.showTimeAxisTick()
 	.tickFormat({
-		format: d3.timeFormat('%X'),
+		format: d3.timeFormat('%x%X'),
 		tickTime: d3.timeMinutes,
 		tickInterval: 5,
 		tickSize: 10,
@@ -28,7 +31,8 @@ class App extends Component {
 	render() {
 		d3.select('#root')
 			.append('svg')
-			.attr('width', 800)
+			.attr('width', 850)
+			.attr('height', 700)
 			.datum(chartData)
 			.call(chart);
 
